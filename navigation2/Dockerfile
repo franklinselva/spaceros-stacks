@@ -19,8 +19,9 @@
 #   VCS_REF         - The git revision of the Space ROS source code (no default value).
 #   SPACE_ROS_IMAGE - The base Space ROS image to build on
 
-FROM osrf/space-ros:latest
+ARG BASE_IMAGE=osrf/space-ros:latest
 
+FROM ${BASE_IMAGE}
 ARG VCS_REF
 
 # Specify the docker image metadata
