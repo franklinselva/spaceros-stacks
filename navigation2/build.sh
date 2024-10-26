@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-ORG=osrf
-IMAGE=space_nav2
-TAG=latest
+IMAGE_NAME="osrf/space-ros"
+TAG="nav2"
 
-VCS_REF=""
-VERSION=preview
+VCS_REF=$(git rev-parse --short HEAD)
 
 # Exit script with failure if build fails
 set -eo pipefail
@@ -14,12 +12,9 @@ echo ""
 echo "##### Building Navigation2/Space ROS Docker Image #####"
 echo ""
 
-docker build -t $ORG/$IMAGE:$TAG \
+docker build -t $IMAGE_NAME:$TAG \
     --build-arg VCS_REF="$VCS_REF" \
-    --build-arg VERSION="$VERSION" \
-    --build-arg SPACE_ROS_IMAGE="${SPACE_ROS_IMAGE:-osrf/space-ros:latest}" \
     .
 
 echo ""
 echo "##### Done! #####"
-
